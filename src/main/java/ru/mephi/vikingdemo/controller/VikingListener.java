@@ -1,18 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ru.mephi.vikingdemo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.mephi.vikingdemo.gui.VikingDesktopFrame;
+import ru.mephi.vikingdemo.model.Viking;
 import ru.mephi.vikingdemo.service.VikingService;
 
-/**
- *
- * @author test2023
- */
 @Component
 public class VikingListener {
     private VikingService service;
@@ -22,12 +15,31 @@ public class VikingListener {
     public VikingListener(VikingService service) {
         this.service = service;
     }
-    
-    public void setGui(VikingDesktopFrame gui){
+
+    public void setGui(VikingDesktopFrame gui) {
         this.gui = gui;
     }
 
+    public void addViking(Viking viking) {
+        if (gui != null) {
+            gui.addNewViking(viking);
+        }
+    }
+
+    public void updateViking(Viking viking) {
+        if (gui != null) {
+            gui.updateViking(viking);
+        }
+    }
+
+    public void deleteVikingById(int id) {
+        if (gui != null) {
+            gui.deleteVikingById(id);
+        }
+    }
+
     void testAdd() {
-        gui.addNewViking(service.createRandomViking());
+        addViking(service.createRandomViking());
     }
 }
+
