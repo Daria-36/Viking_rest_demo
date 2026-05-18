@@ -13,7 +13,7 @@ public class VikingMapper {
 
     public VikingEntity toVikingEntity(Viking viking) {
         return new VikingEntity(
-                null,
+                viking.id(),
                 viking.name(),
                 viking.age(),
                 viking.heightCm(),
@@ -45,12 +45,25 @@ public class VikingMapper {
                 .toList();
 
         return new Viking(
+                entity.id(),
                 entity.name(),
                 entity.age(),
                 entity.heightCm(),
                 entity.hairColor(),
                 entity.beardStyle(),
                 equipment
+        );
+    }
+
+    public Viking withId(Integer id, Viking viking) {
+        return new Viking(
+                id,
+                viking.name(),
+                viking.age(),
+                viking.heightCm(),
+                viking.hairColor(),
+                viking.beardStyle(),
+                viking.equipment()
         );
     }
 }
